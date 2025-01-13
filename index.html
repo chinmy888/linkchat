@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="keywords" content="linkchat客服、linkchat客服系统、linkchat客服软件、linkchat、LinkChat、客服系统、客服软件、智能客服系统、智能客服软件、智能机器人、工单系统、在线客服linkchat，在线客服,客服系统,客服平台,客服接入,客服系统,linkchat客服官网,linkchat客服app,linkchat客服app安卓,linkchatapp官网,linkchatapp下载,linkchat聊天软件,linkchat苹果下载,linkchatios下载,linkchat安卓下载,安全聊天软件，加密聊天软件,安全聊天app,加密聊天app,爱挚能官网下载,爱挚能下载,加密聊天">
+    <meta name="description" content="linkchat官方客服系统，linkchat，专业开发多国语言在线客服系统，数千平台稳定使用。提供独立一级域名，让您不用担心域名问题造成会员流失。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="icon" type="image/png" href="./favicon.ico" alt="LinkChat官网">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>LinkChat官网</title>
+    <meta name="keywords" id="kwds" content="linkchat客服、linkchat客服系统、linkchat客服软件、linkchat、LinkChat、客服系统、客服软件、智能客服系统、智能客服软件、智能机器人、工单系统、在线客服linkchat，在线客服,客服系统,客服平台,客服接入,客服系统,linkchat客服官网,linkchat客服app,linkchat客服app安卓,linkchatapp官网,linkchatapp下载,linkchat聊天软件,linkchat苹果下载,linkchatios下载,linkchat安卓下载,安全聊天软件，加密聊天软件,安全聊天app,加密聊天app,爱挚能官网下载,爱挚能下载,加密聊天">
+    <meta name="description" id="dspn" content="linkchat官方客服系统，linkchat，专业开发多国语言在线客服系统，数千平台稳定使用。提供独立一级域名，让您不用担心域名问题造成会员流失。">
+    <style>
+        #share {max-width:750px; height:100%; background-color:#fff; text-align:center; color:#141E46; font-size:14px; margin:0 auto;}
+        .logo {width:130px; height:160px; margin-top:74px;}
+        .desci {width:133px; height:36px; margin-top:29px; position:relative; top:0; left:50%; transform:translate(-50%, 0);}
+        .desci > img {width:100%; height:100%;}
+        .content {line-height:30px; margin-top:20px;}
+        .downbated {width:80%; height:50px; background-color:#007EFF; border:none; color:#fff; font-size:16px;
+            line-height:50px; border-radius:50px; margin-top:40px; box-shadow:0 5px 6px 1px rgba(0, 126, 255, 0.4); position:relative; outline:none;}
+        .bgImg {width:100%; height:auto; margin-top:20px;}
+        .bat {width:36px; height:36px; position:absolute; top:50%; left:26px; transform:translate(0, -50%);}
+        .weixin{position:fixed; width:100%; height:100%; top:0px; left:0px; background:rgba(0,0,0, .5);}
+        .wx-img-box{position:relative; width:100%; text-align:right;}
+        .wx-img-box img{width:80%;}
+    </style>
+    <script type="application/javascript" src="static/js/vue.min.js"></script>
+</head>
+<body>
+<div id="share"><img src="static/picture/img_sbat_logos.png" class="logo"> <div class="desci"><img src="static/picture/img_wbat_mark.png"></div> <div class="content">
+        安全加密的客服软件，<br>
+        可以随时随地和朋友进行闲聊。<br>
+        和重要的人聊重要的事!
+    </div> <button  class="downbated"><img src="static/picture/img_sbat_logos.png" class="bat"><a href="#" style="color:#FFFFFF"><span style="margin-left: 20px;" style="color:#FFFFFF">下载LinkChat</span></a></button> <img src="static/picture/img_h_banner2.png" class="bgImg"> <!----></div>
+<script src="static/js/clipboard.min.js"></script>
+<script src="static/http.js"></script>
+<script>
+
+    new Vue({
+        el: "#share",
+        data: {
+            isWeixin: false,
+            wxIsIOS: false,
+            inviter: '',
+            setinviter: {'inviter': ''},
+            isEg:false,
+        },
+        created(){
+            if(this.getQueryString('lg')){
+                if(this.getQueryString('lg') == 'eg'){
+                    this.isEg = true
+                }else{
+                    this.isEg = false
+                }
+            }else{
+                let langs = (navigator.systemLanguage?navigator.systemLanguage:navigator.language);
+                let lang = langs.substr(0, 2);//获取lang字符串的前两位
+                if(lang === 'zh'){
+                    this.isEg = false
+                }else{
+                    this.isEg = true
+                };
+            }
+        },
+        methods: {
+            downLoadBtn: function () {
+                let ua = window.navigator.userAgent.toLowerCase()
+                if (ua.match(/MicroMessenger/i) == 'micromessenger') { //判断是否是 微信浏览器
+                    this.isWeixin = true
+                    if (/android/i.test(navigator.userAgent)) { //---Android
+                        this.wxIsIOS = false
+                    }
+                    if (/ipad|iphone|mac/i.test(navigator.userAgent)) { //---IOS
+                        this.wxIsIOS = true
+                        // window.location.href = 'https://apps.apple.com/cn/app/id1661048017';
+                    }
+                    return
+                }
+                this.getMDType(navigator.userAgent.toLowerCase());
+            },
+            getMDType(sUserAgent){
+                let _num = 0
+                const isIphone = sUserAgent.match(/iphone/i) == "iphone" || sUserAgent.match(/mac/i) == 'mac'; //苹果
+                if(isIphone){
+                    window.location.href = 'https://apps.apple.com/cn/app/id1661048017';
+                }else{
+                    window.location.href = '/app/linkchat.rar';
+                }
+
+            },
+            getQueryString(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]); return null;
+            },
+
+        },
+        mounted: function () {
+            var url = decodeURI(location.search);
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substring(1); 
+                var strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+                }
+                if(!theRequest.inviter){
+                    return
+                }
+                this.inviter = (((BigInt(Number(theRequest.inviter)) & BigInt(0xffffffff))) & (~(BigInt(0x1) << BigInt(31)))).toString()
+                this.setinviter.inviter = this.inviter
+                this.setinviter = JSON.stringify(this.setinviter)
+            }
+            let $this = this;
+            if(this.inviter){
+                var temp = JSON.stringify({inviter:this.inviter});
+                document.getElementById('downloadbtn').setAttribute('data-clipboard-text', temp)
+                document.getElementById('downloadbtn').addEventListener('click',function (e) {
+                    new ClipboardJS('#downloadbtn');
+                    navigator.clipboard.writeText(`${temp}`).then(res => {
+                        console.log(res)
+                    }).catch(err => {
+                        console.log(err)
+                    })
+                    $this.downLoadBtn();
+                })
+            }else{
+                document.getElementById('downloadbtn').addEventListener('click',function (e) {
+                    $this.downLoadBtn();
+                })
+            }
+
+            let _channel = this.getQueryString('channel');
+            if(_channel){
+                loadBrowse(_channel)
+            }
+
+
+        }
+    })
+
+</script>
+
+
+</body></html>
